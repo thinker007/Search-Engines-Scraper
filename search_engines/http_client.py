@@ -25,7 +25,7 @@ class HttpClient(object):
             req = self.session.get(page, timeout=self.timeout)
             self.session.headers['Referer'] = page
         except requests.exceptions.RequestException as e:
-            return self.response(http=0, html=e.__doc__)
+            return self.response(http=0, html=e.__doc__,req=req)
         return self.response(http=req.status_code, html=req.text,req=req)
     
     def post(self, page, data):
@@ -35,8 +35,8 @@ class HttpClient(object):
             req = self.session.post(page, data, timeout=self.timeout)
             self.session.headers['Referer'] = page
         except requests.exceptions.RequestException as e:
-            return self.response(http=0, html=e.__doc__)
-        return self.response(http=req.status_code, html=req.text)
+            return self.response(http=0, html=e.__doc__,req=req)
+        return self.response(http=req.status_code, html=req.text,req=req)
     
     def _quote(self, url):
         '''URL-encodes URLs.'''
