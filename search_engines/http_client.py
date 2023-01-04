@@ -3,13 +3,15 @@ from collections import namedtuple
 
 from .config import TIMEOUT, PROXY, USER_AGENT
 from . import utils as utl
-
+from fake_useragent import UserAgent
 
 class HttpClient(object):
     '''Performs HTTP requests. A `requests` wrapper, essentialy'''
     def __init__(self, timeout=TIMEOUT, proxy=PROXY):
         self.session = requests.session()
         self.session.proxies = self._set_proxy(proxy)
+        ua = UserAgent()
+        USER_AGENT = ua.random
         self.session.headers['User-Agent'] = USER_AGENT
         self.session.headers['Accept-Language'] = 'en-GB,en;q=0.5'
 
