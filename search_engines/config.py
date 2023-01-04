@@ -7,7 +7,7 @@ from fake_useragent import UserAgent
 PYTHON_VERSION = version_info.major
 
 ## Maximum number or pages to search
-SEARCH_ENGINE_RESULTS_PAGES = 20
+SEARCH_ENGINE_RESULTS_PAGES = 1
 
 ## HTTP request timeout 
 TIMEOUT = 10
@@ -22,7 +22,7 @@ FAKE_USER_AGENT = 'Mozilla/5.0 (Windows NT 6.1; rv:84.0) Gecko/20100101 Firefox/
 FAKE_USER_AGENT = ua.random
 
 ## Proxy server 
-PROXY = None
+PROXY = 'socks5h://192.168.50.254:7890'
 
 ## TOR proxy server 
 TOR = 'socks5h://127.0.0.1:9050'
