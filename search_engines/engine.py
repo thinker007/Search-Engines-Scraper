@@ -155,6 +155,8 @@ class SearchEngine(object):
         out.console('Searching {}'.format(self.__class__.__name__))
         self._query = utils.decode_bytes(query)
         self.results = SearchResults()
+        # Simulates browsing to the  home page and retrieving the initial cookie.
+        html = self._get_page(self._base_url)
         request = self._first_page()
 
         for page in range(1, pages + 1):
