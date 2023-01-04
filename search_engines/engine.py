@@ -21,6 +21,7 @@ class SearchEngine(object):
         self._delay = (1, 4)
         self._query = ''
         self._filters = []
+        self._first_response = None
 
         self.results = SearchResults()
         '''The search results.'''
@@ -163,6 +164,7 @@ class SearchEngine(object):
         for page in range(1, pages + 1):
             try:
                 response = self._get_page(request['url'], request['data'])
+                self._first_response = response
                 if not self._is_ok(response):
                     break
                 tags = BeautifulSoup(response.html, "html.parser")
