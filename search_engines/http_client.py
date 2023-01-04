@@ -16,7 +16,7 @@ class HttpClient(object):
         self.session.headers['Accept-Language'] = 'en-GB,en;q=0.5'
 
         self.timeout = timeout
-        self.response = namedtuple('response', ['http', 'html'])
+        self.response = namedtuple('response', ['http', 'html','req'])
 
     def get(self, page):
         '''Submits a HTTP GET request.'''
@@ -26,7 +26,7 @@ class HttpClient(object):
             self.session.headers['Referer'] = page
         except requests.exceptions.RequestException as e:
             return self.response(http=0, html=e.__doc__)
-        return self.response(http=req.status_code, html=req.text)
+        return self.response(http=req.status_code, html=req.text,req=req)
     
     def post(self, page, data):
         '''Submits a HTTP POST request.'''
