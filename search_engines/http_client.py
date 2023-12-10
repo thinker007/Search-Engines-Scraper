@@ -8,13 +8,8 @@ from fake_useragent import UserAgent
 class HttpClient(object):
     '''Performs HTTP requests. A `requests` wrapper, essentialy'''
     def __init__(self, timeout=TIMEOUT, proxy=PROXY):
-        self.session = requests.Session()
+        self.session = requests.Session(impersonate="chrome110")
         self.session.proxies = self._set_proxy(proxy)
-        ua = UserAgent()
-        USER_AGENT = ua.random
-        self.session.headers['User-Agent'] = USER_AGENT
-        self.session.headers['Accept-Language'] = 'en-GB,en;q=0.5'
-
         self.timeout = timeout
         self.response = namedtuple('response', ['http', 'html','req'])
 
