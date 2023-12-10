@@ -123,6 +123,10 @@ class SearchEngine(object):
         out.console(msg, level=out.Level.error)
         return False
     
+    def disable_console(self):
+        '''Disables console output'''
+        out.console = lambda msg, end='\n', level=None: None
+    
     def set_headers(self, headers):
         '''Sets HTTP headers.
         
