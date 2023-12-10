@@ -1,4 +1,4 @@
-import requests
+from curl_cffi import requests
 from collections import namedtuple
 
 from .config import TIMEOUT, PROXY, USER_AGENT
@@ -8,7 +8,7 @@ from fake_useragent import UserAgent
 class HttpClient(object):
     '''Performs HTTP requests. A `requests` wrapper, essentialy'''
     def __init__(self, timeout=TIMEOUT, proxy=PROXY):
-        self.session = requests.session()
+        self.session = requests.Session()
         self.session.proxies = self._set_proxy(proxy)
         ua = UserAgent()
         USER_AGENT = ua.random
